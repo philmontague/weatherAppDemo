@@ -12,9 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 // Update the weatherInfo div with the weather data
                 weatherInfo.innerHTML = `<h2>Weather in ${location}:</h2>
-                                         <p>Temperature: ${data.current_temperature}°C</p>
-                                         <p>Weather: ${data.description}</p>
-                                         <p>Humidity: ${data.humidity}%</p>`;
+                                         <p>Temperature: ${data.temperature}°F</p>`;
             })
             .catch(error => {
                 weatherInfo.innerHTML = `<p>Error: ${error.message}</p>`;
@@ -24,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to fetch weather data from the Open Meteo API
     function fetchWeatherData(location) {
         const apiKey = '1de659682446370acb79be9c6f22a4b3';
-        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m`; 
+        const apiUrl = `https://api.open-meteo.com/v1/gfs?latitude=52.52&longitude=13.41&hourly=temperature_2m&temperature_unit=fahrenheit`; 
 
 
         return fetch(apiUrl)
@@ -36,11 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 // Extract relevant weather data from the API response
-                const currentWeather = data;
+                const currentWeather = data.hourly.temperature_2m;
                 return {
-                    current_temperature: currentWeather.temperature,
-                    description: currentWeather.weathercode,
-                    humidity: currentWeather.humidity
+                    current_temperature: currentWeather.temperature
                 };
             });
     }
