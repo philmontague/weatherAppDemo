@@ -1,44 +1,49 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('weather-id');
-    const locationInput = document.getElementById('location');
-    const weatherInfo = document.getElementById('weather-form');
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const location = locationInput.value;
-
-        // Call the Open Meteo API and retrieve weather data here
-        fetchWeatherData(location)
-            .then(data => {
-                // Update the weatherInfo div with the weather data
-                weatherInfo.innerHTML = `<h2>Weather in ${location}:</h2>
-                                         <p>Temperature: ${data.temperature}°F</p>`;
-            })
-            .catch(error => {
-                weatherInfo.innerHTML = `<p>Error: ${error.message}</p>`;
-            });
-    });
-
-    // Function to fetch weather data from the Open Meteo API
-    function fetchWeatherData(location) {
-        const apiKey = '1de659682446370acb79be9c6f22a4b3';
-        const apiUrl = `https://api.open-meteo.com/v1/gfs?latitude=52.52&longitude=13.41&hourly=temperature_2m&temperature_unit=fahrenheit`; 
+// Get references to DOM Events 
 
 
-        return fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Unable to fetch weather data');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Extract relevant weather data from the API response
-                const currentWeather = data.hourly.temperature_2m;
-                return {
-                    current_temperature: currentWeather.temperature
-                };
-            });
-    }
-});
+// API key and URL
+const apiKey = `1de659682446370acb79be9c6f22a4b3`; 
+const apiUrl = 'https://api.openweathermap.org/data/2.5/weather'; 
 
+// Add submit event listener to form
+
+
+    // Get location value from input
+    
+
+    // Fetch weather data 
+   
+
+
+
+// Fetch weather data from API using async function fetchWeather(location) 
+
+    // Build query params 
+
+
+    // API URL with params 
+
+        // Make fetch request 
+
+
+        // Display weather data 
+
+    // Don't forget catch(error) 
+
+
+
+// Display Weather Data using function displayWeather(data) 
+
+    // Check if data exists 
+ 
+
+    // Destruct Values 
+
+
+    // Build HTML output 
+
+
+    // Update DOM with output 
+
+    
+ 
